@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi lienzo de pixeles</title>
+    <style>
+        body { display; flex; flex-direction; column; align-items: center; background: #e0e0e0; color: #1a1a1a; font-family: sans-serif; }
+        canvas { border; 4px solid #fff; background: #000; cursor: crosshair; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Mi Prototipo de Pixeles</h1>
+    <p>haz click dentro del cuadro negro para pintar bloques verdes</p>
+
+    <canvas id="lienzo" width="400" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('lienzo');
+        const ctx = canvas.getContext('2d');
+        const tamanoPixel = 10;
+
+        canvas.addEventListener('click', function(evento) {
+            const rect = canvas.getBoundingClientRect();
+            const x = evento.clientX - rect.left;
+            const y = evento.clientY - rect.top;
+
+            const col = Math.floor(x / tamanoPixel) *tamanoPixel;
+            const fila = Math.floor(y / tamanoPixel) *tamanoPixel;
+
+            ctx.fillStyle = '#00ff00';
+            ctx.fillRect(col, fila, tamanoPixel, tamanoPixel);
+        });
+    </script>
+
+</body>
+</html>
